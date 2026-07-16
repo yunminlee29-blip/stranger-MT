@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>낯선대학 총연합 MT — 강화도</title>
+<meta name="description" content="어느 팀이 가장 강력한 친목을 다질 것인가! 노을과 갯벌의 섬, 강화도에서 만나요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="낯선대학 총연합 MT — 강화도 🌊">
+<meta property="og:description" content="여기를 눌러 기본 안내를 확인해주세요.">
+<meta property="og:url" content="https://strangermt.vercel.app/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EFE8; --paper-deep:#E9E4D8;
+  --ink:#161511; --ink-soft:#6E6A5E;
+  --hairline:#D8D2C4;
+  --accent:#1B6FA8; --accent-soft:#DCEAF5; --accent-warm:#C4552D;
+  --white:#FFFFFF;
+  --serif:"Noto Serif KR",serif;
+  --sans:"Pretendard","맑은 고딕",-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;letter-spacing:-0.01em}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:640px;margin:0 auto;padding:0 22px 72px}
+.hidden{display:none}
+.overline{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.hero .overline{display:inline-block;background:var(--accent-soft);padding:6px 13px;border-radius:999px}
+
+/* ═══ 홈 ═══ */
+.hero{padding:30px 2px 4px}
+.hero h1 .wv{font-size:.5em;vertical-align:middle}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(36px,10vw,50px);line-height:1.02;letter-spacing:-0.03em;margin:10px 0 4px}
+.hero .sub{color:var(--ink-soft);font-size:13.5px}
+.slogan{margin:14px 0 4px;padding:13px 14px;border-radius:14px;background:var(--accent);color:var(--white);font-family:var(--serif);font-weight:600;font-size:15.5px;line-height:1.5;text-align:center}
+.slogan i{font-style:normal;color:#BEDFF5}
+
+.facts{margin-top:36px;border-top:1px solid var(--hairline)}
+.fact{display:flex;gap:20px;padding:15px 2px;border-bottom:1px solid var(--hairline);align-items:baseline}
+.fact .k{font-family:var(--serif);font-style:italic;font-size:18px;min-width:36px;color:var(--accent)}
+.fact .v{font-size:15px;font-weight:600}
+.fact .v small{display:block;font-weight:400;color:var(--ink-soft);font-size:13.5px;margin-top:1px}
+
+.section-label{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:20px 2px 9px}
+
+.common-card{background:var(--ink);color:var(--white);border-radius:16px;padding:13px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:opacity .15s}
+.common-card:active{opacity:.85}
+.common-card .num{font-family:var(--serif);font-style:italic;font-size:17px;color:#BEDFF5}
+.common-card .t{font-family:var(--serif);font-weight:600;font-size:15.5px}
+.common-card .d{color:var(--white);opacity:.6;font-size:12px;margin-top:1px}
+.common-card .arr{margin-left:auto;font-size:15px;color:#BEDFF5}
+
+.team-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.team-item{background:var(--white);border:1px solid var(--hairline);border-radius:16px;padding:13px 15px;cursor:pointer;transition:border-color .15s,background .15s;position:relative}
+.team-item:active{background:var(--accent-soft);border-color:var(--accent)}
+.team-item .num{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--accent)}
+.team-item .temoji{font-size:24px;line-height:1;margin-bottom:7px}
+.team-item .name{font-family:var(--serif);font-weight:600;font-size:16.5px;line-height:1.25;margin-top:2px}
+.team-item .place{color:var(--ink-soft);font-size:11.5px;margin-top:3px;line-height:1.4}
+.team-item .arr{position:absolute;top:11px;right:13px;color:var(--accent);font-size:13px}
+@media(max-width:340px){.team-list{grid-template-columns:1fr}}
+
+.marquee{overflow:hidden;background:var(--white);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:13px 0;margin-top:40px}
+.marquee .track{display:flex;width:max-content;animation:mq 36s linear infinite}
+.marquee span{font-family:var(--serif);font-size:19px;font-weight:600;padding:0 18px;white-space:nowrap}
+.marquee i{font-style:normal;color:var(--accent)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.footer-note{margin-top:44px;text-align:center}
+.footer-note .fs{font-family:var(--serif);font-style:italic;font-size:15px}
+.footer-note .fn{color:var(--ink-soft);font-size:12.5px;margin-top:6px}
+
+/* ═══ 상세 ═══ */
+.stickhead{position:sticky;top:0;z-index:10;background:rgba(242,239,232,.94);backdrop-filter:blur(6px);margin:0 -22px;padding:0 22px;border-bottom:1px solid var(--hairline)}
+.topbar .in{display:flex;align-items:center;gap:12px;padding:12px 0}
+.back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;letter-spacing:.02em;padding:4px 0}
+.topbar .tt{font-family:var(--serif);font-weight:600;font-size:15px;margin-left:auto;color:var(--ink-soft)}
+.sectabs{display:flex;gap:4px;overflow-x:auto;border-top:1px solid var(--hairline);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sectabs::-webkit-scrollbar{display:none}
+.sectabs button{background:none;border:none;padding:11px 10px;font-family:var(--sans);font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--accent);cursor:pointer;white-space:nowrap;text-transform:uppercase}
+.sectabs button:active{color:var(--ink)}
+[id^="sec-"]{scroll-margin-top:104px}
+
+.d-hero{padding:34px 2px 8px}
+.d-hero .demoji{font-size:38px;line-height:1;margin-bottom:8px}
+.d-hero h2{font-family:var(--serif);font-weight:600;font-size:clamp(38px,11vw,54px);line-height:1.02;letter-spacing:-0.03em;margin:10px 0 8px}
+.d-hero .tag{font-family:var(--serif);color:var(--ink-soft);font-size:15px}
+.d-hero .place{margin-top:14px;font-size:14.5px}
+.d-hero .place .k{font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin-right:10px}
+
+.mini-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:40px 2px 12px}
+
+.agenda{border-top:1px solid var(--hairline)}
+.row{display:grid;grid-template-columns:104px 1fr;gap:2px 18px;padding:15px 2px;border-bottom:1px solid var(--hairline)}
+.row .time{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:4px}
+.row .tt2{font-family:var(--serif);font-weight:600;font-size:16.5px}
+.row .desc{color:var(--ink-soft);font-size:13.5px;margin-top:3px;grid-column:2}
+@media(max-width:400px){.row{grid-template-columns:88px 1fr}}
+
+.pts{border-top:1px solid var(--hairline)}
+.pts p{padding:11px 2px;border-bottom:1px solid var(--hairline);font-size:14.5px}
+
+.course{border-top:1px solid var(--hairline)}
+.course .row3{padding:13px 2px;border-bottom:1px solid var(--hairline)}
+.course .c1{font-weight:700;font-size:14.5px}
+.course .c2{color:var(--ink-soft);font-size:13.5px;margin-top:2px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--hairline);background:var(--white);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:500;color:var(--ink)}
+.chip.must{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+
+.rlist{border-top:1px solid var(--hairline)}
+.rlist .li{display:flex;gap:18px;align-items:baseline;padding:11px 2px;border-bottom:1px solid var(--hairline)}
+.rlist .num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--accent);min-width:32px}
+.rlist .tx{font-size:14.5px;font-weight:500}
+.rlist .wit .tx{color:var(--accent-warm)}
+
+.warnblock{margin-top:44px;border-top:2px solid var(--accent-warm);padding-top:4px}
+.warnblock .wl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-warm);font-weight:700;margin:12px 2px 6px}
+.warnblock p{padding:10px 2px;border-bottom:1px solid var(--hairline);font-size:14px;color:#7c3013;font-weight:500}
+
+.copy-btn{margin-top:14px;width:100%;padding:13px;border:none;border-radius:12px;background:var(--accent);color:var(--white);font-weight:700;font-size:14px;cursor:pointer;font-family:var(--sans);letter-spacing:.02em;transition:opacity .15s}
+.copy-btn:active{opacity:.85}
+
+.share{margin-top:40px;text-align:center}
+.share button{background:none;border:none;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:var(--sans)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══ 홈 ═══ -->
+  <div id="home">
+    <header class="hero">
+      <p class="overline">낯선대학 총연합 MT — Ganghwa Edition</p>
+      <h1>강화도 <span class="wv">🌊</span></h1>
+      <p class="sub">노을과 갯벌의 섬에서, 낯선 이들이 다시 모인다.</p>
+      <div class="slogan">“어느 팀이 가장 강력한 <i>친목</i>을 다질 것인가!”</div>
+    </header>
+
+    <p class="section-label">공통 안내 — 모든 조 필독</p>
+    <div class="common-card" onclick="go('common')">
+      <span class="num" style="font-size:22px">📋</span>
+      <div>
+        <div class="t">모든 조 필독</div>
+        <div class="d">진행 방식 · 전체 일정 · 공통 체크</div>
+      </div>
+      <span class="arr">→</span>
+    </div>
+
+    <p class="section-label">우리 조 선택하기</p>
+    <div class="team-list" id="teamList"></div>
+
+    <div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
+
+    <p class="section-label" style="margin-top:36px">The Facts</p>
+    <div class="facts" style="margin-top:0">
+      <div class="fact"><span class="k">D.</span><span class="v">09:30 / 10:00 서울 출발<small>함께 출발이 어려우면 개별 이동</small></span></div>
+      <div class="fact"><span class="k">P.</span><span class="v">36 Strangers<small>여섯 개의 팀, 하나의 저녁</small></span></div>
+      <div class="fact"><span class="k">H.</span><span class="v"><a href="https://map.naver.com/p/search/바닷가숲속펜션" target="_blank" rel="noopener">바닷가숲속펜션</a><small>인천 강화군 불은면 해안동로466번길 8-13</small></span></div>
+      <div class="fact"><span class="k">I.</span><span class="v">No Plan, Only Fun<small>다 같이 움직이고, 다 같이 만드는 MT</small></span></div>
+    </div>
+
+    <div class="footer-note">
+      <p class="fs">“미흡한 부분이 있어도 너그럽게.”</p>
+      <p class="fn">준비위원회도 함께 노는 사람들입니다 — 낯선대학 총연합 MT</p>
+    </div>
+  </div>
+
+  <!-- ═══ 상세 ═══ -->
+  <div id="detail" class="hidden">
+    <div class="stickhead">
+      <div class="topbar"><div class="in">
+        <button class="back" onclick="go('home')">← 처음으로</button>
+        <span class="tt" id="barTitle"></span>
+      </div></div>
+      <div class="sectabs hidden" id="secTabs"></div>
+    </div>
+    <div id="detailBody"></div>
+    <div class="share"><button onclick="shareLink()">이 조 가이드 링크 복사</button></div>
+  </div>
+
+</div>
+
+<script>
+const R=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+const ADDR="인천 강화군 불은면 해안동로466번길 8-13";
+
+/* ── 마퀴 ── */
+const MQ=`어느 팀이 가장 강력한 친목을 다질 것인가! <i>✺</i> 다 같이 만드는 MT <i>✺</i> NO PLAN, ONLY FUN <i>✺</i> `;
+document.getElementById("mq").innerHTML=`<span>${MQ.repeat(3)}</span><span>${MQ.repeat(3)}</span>`;
+
+/* ── 공통 안내 ── */
+function commonHTML(){
+  return `
+  <div class="d-hero">
+    <div class="demoji">📋</div>
+    <p class="overline">For Everyone</p>
+    <h2>공통 안내</h2>
+    <p class="tag">모든 조가 함께 읽는 페이지</p>
+  </div>
+
+  <p class="mini-label">숙소</p>
+  <div class="facts" style="margin-top:0">
+    <div class="fact"><span class="k">H.</span><span class="v">바닷가숲속펜션<small>${ADDR}</small></span></div>
+  </div>
+  <button class="copy-btn" onclick="copyAddr()">주소 복사하기</button>
+
+  <p class="mini-label">이번 MT 진행 방식</p>
+  <div class="pts">
+    <p>준비위원회가 모든 일정을 짜는 방식이 아니라, 각 팀이 친구들끼리 여행 가듯 직접 점심 장소를 정하고 액티비티를 예약하며 함께 만들어가는 MT입니다.</p>
+    <p>준비위원회는 숙소·전체 일정·레크리에이션 등 큰 틀만 잡고, 세부 일정은 각 팀이 자유롭게 정해서 움직이면 됩니다.</p>
+    <p>조별 액티비티는 필수가 아니라 “우리 팀은 어디 가서 뭐 하고 놀까?”를 정하는 가이드입니다.</p>
+    <p>준비위원회도 함께 참여하는 인원이라 미흡한 부분이 있을 수 있어요. 너그럽게 이해해주시고, 다 같이 만들어가요.</p>
+  </div>
+
+  <p class="mini-label">전체 일정</p>
+  <div class="agenda">
+    ${row("09:30 / 10:00","서울 출발","함께 출발이 어려우면 개별 이동해 주세요.")}
+    ${row("점심 – 오후","팀별 자유 일정","각 팀별 점심 식사와 오후 액티비티.")}
+    ${row("15:00 – 16:00","숙소 도착","짐 정리와 식사 준비. 먼저 도착한 사람부터 함께 도와요.")}
+    ${row("17:00 – 18:30","저녁 식사","36명이 함께하는 바베큐.")}
+    ${row("18:30 – 19:00","1차 정리","먹은 자리는 다 같이. 금방 끝나요.")}
+    ${row("19:00 – 22:00","레크리에이션","준비위원회가 준비한 밤. 기대하셔도 좋습니다.")}
+  </div>
+
+  <p class="mini-label">모든 조 공통 체크</p>
+  <div class="rlist">
+    ${rli(0,"조별 차량 담당 · 시간 체크 담당 · 예약 확인 담당 정하기")}
+    ${rli(1,"예약이 필요한 액티비티는 각 조에서 사전 확인")}
+    ${rli(2,"운전자는 양조장 시음 및 음주 절대 금지")}
+    ${rli(3,"17:00 저녁 시작 — 늦어도 16:00 전후 숙소 도착")}
+    ${rli(4,"즐거운 마음 (필수 지참)",true)}
+  </div>`;
+}
+
+/* ── 팀 데이터 ── */
+const TEAMS=[
+{ id:"beach", emoji:"🏖️", name:"해수욕장", place:"동막해변", tag:"바다, 사진, 그리고 짧은 물놀이",
+  flow:[["09:30 / 10:00","서울 출발",""],["12:00 전후","점심 식사","강화도 도착 후 팀이 정한 곳에서."],["13:00 – 14:30","동막해변","산책, 사진, 가벼운 물놀이, 갯벌 구경. 본격 물놀이보다는 가볍게."],["14:30 – 15:00","철수","젖은 옷 정리와 이동 시간을 생각하면 지금이 철수 타이밍."],["15:30 – 16:00","숙소 도착","샤워와 정리는 숙소에서."]],
+  points:["바다 보고 사진 찍고, 짧게 쉬기 좋은 코스예요.","본격 물놀이보다는 가볍게 다녀오는 일정으로 추천.","14:30 전후에는 철수 준비를 시작하는 게 좋아요."],
+  bring:["여벌 옷","수건","슬리퍼","선크림","모자","비닐봉투 (젖은 옷용)","개인 물","간단한 간식"],
+  warns:["물놀이를 오래 하면 숙소 도착이 늦어집니다.","차량에 모래 유입 주의 — 슬리퍼와 봉투 필수.","17:00 저녁 시작. 늦어도 16:00 전후 숙소 도착."] },
+
+{ id:"history", emoji:"🏯", name:"유적지", place:"광성보 · 덕진진 · 초지진", tag:"숙소에서 가장 가까운, 가장 여유로운 동선",
+  flow:[["09:30 / 10:00","서울 출발",""],["12:00 전후","점심 식사",""],["13:00 – 14:30","유적지 탐방","1–2곳만 여유롭게. 광성보가 숙소와 가장 가까워 제일 추천."],["14:30 – 15:00","숙소 이동",""],["15:00 – 15:30","숙소 도착","가장 먼저 도착하는 팀이 될 확률이 높습니다."]],
+  points:["이동 부담이 가장 적은 팀!","여러 곳보다 1–2곳만 여유롭게 보는 걸 추천해요."],
+  courses:[["짧고 편한 코스","광성보 한 곳만"],["조금 더 보는 코스","광성보 + 덕진진"],["사진 위주 코스","초지진 + 해안도로 드라이브"]],
+  bring:["편한 신발","생수","모자","선크림","양산·얇은 겉옷 (더운 날)"],
+  warns:["유적지는 그늘이 적습니다. 너무 오래 걷지 않게 조절하세요.","더운 날엔 카페·편의점 휴식을 중간에 넣어도 좋아요."] },
+
+{ id:"stay", emoji:"🛋️", name:"숙소 · 장보기", place:"바닷가숲속펜션 · 강화도 내 마트", tag:"에어컨 밑에서 쉬면서, 저녁을 완성하는 팀",
+  flow:[["09:30 / 10:00","서울 출발",""],["점심","점심 후 숙소 근처로","장보기 담당은 별도 이동."],["13:00 – 14:30","장보기","고기·술·음료·식재료·일회용품. 얼음은 마지막에."],["15:00 – 16:00","체크인 & 정리","짐 정리, 냉장고 공간 확보, 식재료 냉장 정리."],["16:00 – 17:00","저녁 준비","도착한 사람부터 자연스럽게 합류."]],
+  points:["숙소에서 쉬는 조이면서 동시에 운영지원 팀.","장보기 담당은 늦어도 15:30 전후 숙소 도착 추천.","저녁 준비는 특정 인원에게만 맡기지 않기."],
+  courses:[["장보기 담당","고기·술·음료·식재료·일회용품 구매 → 도착 후 냉장 정리"],["숙소 정리 담당","짐 공간 정리, 냉장고 공간 확보, 공용 공간 정리"],["바베큐 준비 담당","재료 정리, 일회용품·물티슈·쓰레기봉투 세팅, 테이블 준비"]],
+  coursesLabel:"역할 분담",
+  bring:["고기 · 소시지 · 버섯","쌈채소 · 마늘 · 고추 · 김치","쌈장 · 소금 · 후추 · 참기름","햇반 · 라면 · 물","술 · 음료","얼음 (마지막에!)","종이컵 · 접시 · 젓가락","물티슈 · 키친타월 · 쓰레기봉투","위생장갑 · 호일","아침용 컵라면 · 빵 · 커피"],
+  bringLabel:"구매 체크리스트",
+  warns:["숯·그릴·집게·가위는 숙소 제공 여부를 미리 확인하세요.","고기와 술은 예산 초과가 쉬워요. 1인 예산 기준을 먼저 정한 뒤 구매.","숙소팀은 쉬는 조이자 준비조 — 16:00부터는 저녁 준비를 함께."] },
+
+{ id:"activity", emoji:"🏎️", name:"액티비티", place:"강화루지 · 강화레포츠파크", tag:"시간 관리가 가장 중요한 팀",
+  flow:[["09:30 / 10:00","서울 출발",""],["11:30 – 12:30","점심 식사","다른 팀보다 조금 일찍."],["13:00 – 14:30","루지 / 서바이벌","루지는 1–2회권으로 짧게. 서바이벌은 단체·예약 가능 여부 사전 확인."],["14:30 – 15:00","정리 & 이동","15:00 전후에는 무조건 정리."],["15:30 – 16:00","숙소 도착","샤워 시간까지 계산해 두세요."]],
+  points:["활동 시간이 길어질 수 있어 시간 관리가 핵심.","루지는 대기시간이 생길 수 있으니 짧게 진행 추천."],
+  reserve:["운영시간","이용요금","단체 예약 가능 여부","현장 발권 가능 여부","우천 시 운영 여부","주차 가능 여부"],
+  bring:["운동화 (필수)","편한 옷","여벌 티셔츠","생수","선크림","모자"],
+  warns:["샌들·슬리퍼·하이힐 비추천.","휴대폰 촬영 시 분실 주의.","17:00 저녁 시작 — 시간 관리 꼭 부탁드립니다."] },
+
+{ id:"cafe", emoji:"☕", name:"전시형 카페", place:"카페 두운리 · 아트팩토리 참기름 강화 · 조양방직", tag:"가장 부담 없이 움직이는 팀",
+  flow:[["09:30 / 10:00","서울 출발",""],["12:00 전후","점심 식사",""],["13:00 – 14:30","카페 & 전시","두운리는 숙소와 같은 불은면 권역이라 이동이 편합니다."],["14:30 – 15:00","이동 준비","커피가 아무리 좋아도 여기서 일어나야 합니다."],["15:30 전후","숙소 도착",""]],
+  points:["카페 두운리는 이동 부담이 적어요.","전시 느낌을 원하면 아트팩토리 참기름 강화.","조양방직은 사진 맛집이지만 여유 있을 때만."],
+  courses:[["가까운 카페 위주","카페 두운리"],["전시 · 공간감 위주","아트팩토리 참기름 강화"],["사진 많이 찍는 코스","조양방직 — 복귀 여유 있을 때만"]],
+  reserve:["단체 인원 수용 가능 여부","전시 입장료 여부","주차 가능 여부","라스트오더 · 운영시간"],
+  bring:["보조배터리","얇은 겉옷 (카페 냉방 대비)","개인 물","간단한 간식"],
+  warns:["카페에서 오래 머물면 숙소 도착이 늦어집니다. 14:30 전후 이동 준비.","조양방직은 강화읍 쪽 — 당일 교통 상황에 따라 과감히 제외 추천."] },
+
+{ id:"brewery", emoji:"🍶", name:"양조장", place:"금풍양조장", tag:"막걸리의 향기, 그러나 운전자는 향기만",
+  flow:[["09:30 / 10:00","서울 출발",""],["11:30 – 12:30","점심 식사",""],["13:00 – 14:30","투어 / 체험","시간이 정해져 있을 수 있으니 사전 예약 확인 필수. 1시간 내외 추천."],["14:30 – 15:00","마무리 & 이동","구매한 술은 저녁 바베큐에서 다 같이."],["15:30 – 16:00","숙소 도착",""]],
+  points:["막걸리 양조장 체험 코스.","긴 체험보다 짧은 투어 또는 1시간 내외 프로그램 추천."],
+  reserve:["체험 가능 시간","소요시간","인원수 제한","체험비","시음 여부","주차 가능 여부"],
+  bring:["신분증","체험비 (개인 결제 여부 확인)","구매한 술 담을 가방","물"],
+  warns:["운전자는 절대 시음하지 않습니다.","시음한 인원은 운전하지 않도록 미리 차량 배정을 정하세요.","체험이 길어지면 도착이 늦어집니다 — 14:30 전후 마무리."] },
+];
+
+/* ── 렌더 헬퍼 ── */
+function row(t,tt,d){return `<div class="row"><span class="time">${t}</span><div><div class="tt2">${tt}</div></div>${d?`<p class="desc">${d}</p>`:""}</div>`;}
+function rli(i,tx,wit){return `<div class="li ${wit?"wit":""}"><span class="num">${R[i]}</span><span class="tx">${tx}</span></div>`;}
+function chips(arr){return `<div class="chips">${arr.map(x=>`<span class="chip ${x.includes("필수")||x.includes("마지막에!")?"must":""}">${x}</span>`).join("")}</div>`;}
+
+function teamHTML(t,idx){
+  let h=`
+  <div class="d-hero">
+    <div class="demoji">${t.emoji}</div>
+    <p class="overline">Team ${R[idx]}</p>
+    <h2>${t.name}</h2>
+    <p class="tag">${t.tag}</p>
+    <p class="place"><span class="k">P.</span>${t.place}</p>
+  </div>`;
+  if(t.points) h+=`<p class="mini-label" id="sec-points">포인트</p><div class="pts">${t.points.map(p=>`<p>${p}</p>`).join("")}</div>`;
+  h+=`<p class="mini-label" id="sec-flow">추천 흐름</p>
+  <div class="agenda">${t.flow.map(f=>row(f[0],f[1],f[2])).join("")}</div>`;
+  if(t.courses) h+=`<p class="mini-label" id="sec-course">${t.coursesLabel||"추천 코스"}</p><div class="course">${t.courses.map(c=>`<div class="row3"><div class="c1">${c[0]}</div><div class="c2">${c[1]}</div></div>`).join("")}</div>`;
+  if(t.reserve) h+=`<p class="mini-label" id="sec-reserve">예약 확인 사항</p>${chips(t.reserve)}`;
+  h+=`<p class="mini-label" id="sec-bring">${t.bringLabel||"준비물"}</p>${chips(t.bring)}`;
+  h+=`<div class="warnblock" id="sec-warn"><p class="wl">주의사항</p>${t.warns.map(w=>`<p>${w}</p>`).join("")}</div>`;
+  return h;
+}
+
+/* ── 홈 리스트 ── */
+document.getElementById("teamList").innerHTML = TEAMS.map((t,i)=>`
+  <div class="team-item" onclick="go('${t.id}')">
+    <div class="temoji">${t.emoji}</div>
+    <div><div class="name"><span class="num">${R[i]}.</span> ${t.name}</div><div class="place">${t.place}</div></div>
+    <span class="arr">→</span>
+  </div>`).join("");
+
+/* ── 라우팅 ── */
+const home=document.getElementById("home"),detail=document.getElementById("detail"),
+      body=document.getElementById("detailBody"),bar=document.getElementById("barTitle");
+function go(id){
+  if(id==="home"){history.pushState(null,"",location.pathname);show("home");return;}
+  location.hash=id;
+}
+function show(id){
+  if(id==="home"){detail.classList.add("hidden");home.classList.remove("hidden");window.scrollTo(0,0);return;}
+  const i=TEAMS.findIndex(x=>x.id===id);
+  if(id!=="common"&&i<0){show("home");return;}
+  body.innerHTML = id==="common"?commonHTML():teamHTML(TEAMS[i],i);
+  bar.textContent = id==="common"?"공통 안내":`Team ${R[i]} — ${TEAMS[i].name}`;
+  const tabsEl=document.getElementById("secTabs");
+  if(id==="common"){tabsEl.classList.add("hidden");}
+  else{
+    const t=TEAMS[i];
+    const tabs=[["sec-points","포인트"],["sec-flow","추천 흐름"]];
+    if(t.courses) tabs.push(["sec-course",t.coursesLabel||"추천 코스"]);
+    if(t.reserve) tabs.push(["sec-reserve","예약 확인"]);
+    tabs.push(["sec-bring",t.bringLabel||"준비물"],["sec-warn","주의사항"]);
+    tabsEl.innerHTML=tabs.map(x=>`<button onclick="jump('${x[0]}')">${x[1]}</button>`).join("");
+    tabsEl.classList.remove("hidden");
+  }
+  home.classList.add("hidden");detail.classList.remove("hidden");window.scrollTo(0,0);
+}
+function route(){show(location.hash.replace("#","")||"home");}
+window.addEventListener("hashchange",route);
+route();
+
+/* ── 유틸 ── */
+function jump(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
+function copyAddr(){navigator.clipboard.writeText(ADDR).then(()=>alert("주소가 복사되었습니다."));}
+function shareLink(){navigator.clipboard.writeText(location.href).then(()=>alert("링크가 복사되었습니다. 조원들에게 공유하세요!"));}
+</script>
+</body>
+</html>
